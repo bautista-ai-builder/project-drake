@@ -1,0 +1,43 @@
+{
+  "name": "@drake/server",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch --env-file=../../.env src/main.ts",
+    "start": "node dist/main.js",
+    "build": "tsc -p tsconfig.json && node scripts/copy-assets.mjs",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run --passWithNoTests",
+    "db:migrate": "tsx --env-file=../../.env src/database/migrate.ts",
+    "db:seed": "tsx --env-file=../../.env src/database/seed.ts",
+    "smoke:gemini": "tsx --env-file=../../.env src/providers/gemini-smoke.ts",
+    "smoke:translation": "tsx --env-file=../../.env src/providers/translation-smoke.ts",
+    "smoke:translation-matrix": "tsx --env-file=../../.env src/providers/translation-matrix-smoke.ts",
+    "smoke:e2e": "tsx --env-file=../../.env src/smoke/e2e-fixture.ts",
+    "smoke:five-stage": "tsx --env-file=../../.env src/smoke/five-stage.ts",
+    "smoke:reconnect": "tsx --env-file=../../.env src/smoke/reconnect.ts",
+    "smoke:rotation": "tsx --env-file=../../.env src/smoke/rotation-soak.ts",
+    "smoke:product": "tsx --env-file=../../.env src/smoke/product-flow.ts"
+  },
+  "dependencies": {
+    "@drake/contracts": "workspace:*",
+    "@fastify/static": "^8.2.0",
+    "@fastify/websocket": "^11.2.0",
+    "@google-cloud/translate": "^9.2.0",
+    "@google/genai": "^1.20.0",
+    "fastify": "^5.6.0",
+    "jose": "^6.1.0",
+    "pg": "^8.16.3",
+    "ws": "^8.18.3",
+    "zod": "^4.1.5"
+  },
+  "devDependencies": {
+    "@types/node": "^24.5.2",
+    "@types/pg": "^8.15.5",
+    "@types/ws": "^8.18.1",
+    "tsx": "^4.20.5",
+    "typescript": "^5.9.2",
+    "vitest": "^3.2.4"
+  }
+}
